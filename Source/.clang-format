@@ -1,0 +1,30 @@
+---
+# Версия формата (рекомендуется указывать)
+BasedOnStyle: Google
+
+# Отступы
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+# Максимальная длина строки
+ColumnLimit: 100
+
+# Скобки и переносы
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+BreakBeforeBraces: Allman
+
+# Пустые строки
+MaxEmptyLinesToKeep: 1
+
+# Пробелы
+SpacesBeforeTrailingComments: 1
+SpaceBeforeParens: ControlStatements
+
+# Форматирование комментариев
+CommentPragmas: '^ IWYU pragma:'
+
+# Использовать стиль для C++11 и новее
+Standard: Cpp11
+...
