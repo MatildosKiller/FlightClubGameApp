@@ -18,21 +18,33 @@ set(CMAKE_CXX_STANDARD 20)
 # set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /FA")
 
 #app options
+
+# sources
 set(SOURCES 
 Source/main.cpp
  Source/Utils/Math.cpp
   Source/Game/Weapon.cpp 
   Source/Game/Character.cpp)
-set(INCLUDES 
+
+  set(INCLUDES 
 Source/Utils/Math.h
  Source/Game/Weapon.h
   Source/Game/Character.h)
-source_group("Source files/Utils" FILES "Source/Utils/Math.cpp")
+
+  set(MATH_SOURCES Source/Utils/Math.cpp)
+  set(MATH_INCLUDES Source/Utils/Math.h)
+
+  source_group("Source files/Utils" FILES "Source/Utils/Math.cpp")
 source_group("Header files/Utils" FILES "Source/Utils/Math.h")
+
 source_group("Source files/Game" FILES "Source/Game/Weapon.cpp"  "Source/Game/Character.cpp")
 source_group("Header files/Game" FILES "Source/Game/Weapon.h"  "Source/Game/Character.h")
 
+
+# targets
 add_executable(${PROJECT_NAME} ${SOURCES} ${INCLUDES})
+add_library(MathLib STATIC ${MATH_SOURCES} ${MATH_INCLUDES})
+
 #includes
 message("CMAKE_CURRENT_SOURCE_DIR:  ${CMAKE_CURRENT_SOURCE_DIR}")
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Source)
