@@ -7,8 +7,12 @@ message(STATUS "----------- Project files generation for ${PROJECT_NAME} -------
 
 #common options
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
 message("Output directory: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
+
+
 message("CMAKE_CURRENT_SOURCE DIR = ${CMAKE_CURRENT_SOURCE_DIR}")
 set_property(GLOBAL PROPERTY USE_FOLDER ON)
 set(CMAKE_SUPPRESS_REGENERATION  TRUE)
@@ -22,33 +26,40 @@ set(CMAKE_CXX_STANDARD 20)
 # sources
 set(SOURCES 
 Source/main.cpp
- Source/Utils/Math.cpp
-  Source/Game/Weapon.cpp 
-  Source/Game/Character.cpp)
+   )
 
-  set(INCLUDES 
-Source/Utils/Math.h
- Source/Game/Weapon.h
-  Source/Game/Character.h)
+  
 
   set(MATH_SOURCES Source/Utils/Math.cpp)
   set(MATH_INCLUDES Source/Utils/Math.h)
 
-  source_group("Source files/Utils" FILES "Source/Utils/Math.cpp")
-source_group("Header files/Utils" FILES "Source/Utils/Math.h")
+  set(DLL_GAME_SOURCES
+   Source/Game/Weapon.cpp
+   Source/Game/Character.cpp
+)
+  set(DLL_GAME_INCLUDES
+ Source/Game/Weapon.h
+  Source/Game/Character.h
+)
+
+#   source_group("Source files/Utils" FILES "Source/Utils/Math.cpp")
+# source_group("Header files/Utils" FILES "Source/Utils/Math.h")
 
 source_group("Source files/Game" FILES "Source/Game/Weapon.cpp"  "Source/Game/Character.cpp")
 source_group("Header files/Game" FILES "Source/Game/Weapon.h"  "Source/Game/Character.h")
 
 
 # targets
-add_executable(${PROJECT_NAME} ${SOURCES} ${INCLUDES})
+add_executable(${PROJECT_NAME} ${SOURCES})
 add_library(MathLib STATIC ${MATH_SOURCES} ${MATH_INCLUDES})
+add_library(GameLib SHARED ${DLL_GAME_SOURCES} ${DLL_GAME_INCLUDES})
+target_link_libraries(${PROJECT_NAME} PRIVATE GameLib)
+target_link_libraries(GameLib PRIVATE MathLib)
 
 #includes
 message("CMAKE_CURRENT_SOURCE_DIR:  ${CMAKE_CURRENT_SOURCE_DIR}")
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Source)
-
+target_include_directories(GameLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Source)
  
 message("SOURCES: ${SOURCES}")
 message("INCLUDES: ${INCLUDES}")

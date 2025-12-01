@@ -3,7 +3,7 @@
 #include <utility>
 
 #include "Game/character.h"
-#include "Utils/Math.h"
+
 
 int main()
 {
@@ -29,7 +29,7 @@ int main()
             break;
         }
 
-        lastFireStatus = fired;
+        lastFireStatus = fired; 
 
         if (defender->dead())
         {
