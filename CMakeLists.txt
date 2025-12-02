@@ -52,15 +52,26 @@ source_group("Header files/Game" FILES "Source/Game/Weapon.h"  "Source/Game/Char
 # targets
 add_executable(${PROJECT_NAME} ${SOURCES})
 add_library(MathLib STATIC ${MATH_SOURCES} ${MATH_INCLUDES})
-add_library(GameLib SHARED ${DLL_GAME_SOURCES} ${DLL_GAME_INCLUDES})
+add_library(${PROJECT_NAME}Lib SHARED ${DLL_GAME_SOURCES} ${DLL_GAME_INCLUDES})
+add_executable(${PROJECT_NAME}TestRunner Source/Tests/main.cpp)
+
+
+target_compile_definitions(${PROJECT_NAME}Lib PRIVATE _EXPORTING)
+target_compile_definitions(${PROJECT_NAME} PUBLIC _IMPORTING)
+  
 target_link_libraries(${PROJECT_NAME} PRIVATE GameLib)
-target_link_libraries(GameLib PRIVATE MathLib)
+target_link_libraries(${PROJECT_NAME}Lib PRIVATE MathLib)
+target_link_libraries(${PROJECT_NAME}TestRunner PRIVATE MathLib)
+target_link_libraries(${PROJECT_NAME}TestRunner PRIVATE GameLib)
 
 #includes
 message("CMAKE_CURRENT_SOURCE_DIR:  ${CMAKE_CURRENT_SOURCE_DIR}")
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Source)
-target_include_directories(GameLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Source)
- 
+target_include_directories(${PROJECT_NAME}Lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Source)
+target_include_directories(${PROJECT_NAME}TestRunner PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Source) 
+
+
+
 message("SOURCES: ${SOURCES}")
 message("INCLUDES: ${INCLUDES}")
 
