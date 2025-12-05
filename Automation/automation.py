@@ -92,8 +92,10 @@ def build_project(configuration = Configuration.Release):
 
     )
     if run_command(command):
+        print(command)
         print(f"Project built successfully in {configuration} mode")
     else:
+        print(command)
         print(f"Failed to build project in {configuration} mode")
     os.chdir("..")
     

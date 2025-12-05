@@ -59,10 +59,10 @@ add_executable(${PROJECT_NAME}TestRunner Source/Tests/main.cpp)
 target_compile_definitions(${PROJECT_NAME}Lib PRIVATE _EXPORTING)
 target_compile_definitions(${PROJECT_NAME} PUBLIC _IMPORTING)
   
-target_link_libraries(${PROJECT_NAME} PRIVATE GameLib)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}Lib)
 target_link_libraries(${PROJECT_NAME}Lib PRIVATE MathLib)
 target_link_libraries(${PROJECT_NAME}TestRunner PRIVATE MathLib)
-target_link_libraries(${PROJECT_NAME}TestRunner PRIVATE GameLib)
+target_link_libraries(${PROJECT_NAME}TestRunner PRIVATE ${PROJECT_NAME}Lib)
 
 #includes
 message("CMAKE_CURRENT_SOURCE_DIR:  ${CMAKE_CURRENT_SOURCE_DIR}")
