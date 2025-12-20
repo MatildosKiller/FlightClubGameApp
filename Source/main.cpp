@@ -4,9 +4,13 @@
 
 #include "Game/character.h"
 
-
 int main()
 {
+#ifdef SKIP_GAME_OPT
+ std::cout << "============== No game available ==================" << std::endl;
+    return 0;
+#endif
+
     Character hero1("Durden");
     Character hero2("Angel Face");
     Character* attacker = &hero1;
@@ -29,7 +33,7 @@ int main()
             break;
         }
 
-        lastFireStatus = fired; 
+        lastFireStatus = fired;
 
         if (defender->dead())
         {

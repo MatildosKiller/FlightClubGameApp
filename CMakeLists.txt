@@ -58,11 +58,19 @@ add_executable(${PROJECT_NAME}TestRunner Source/Tests/main.cpp)
 
 target_compile_definitions(${PROJECT_NAME}Lib PRIVATE _EXPORTING)
 target_compile_definitions(${PROJECT_NAME} PUBLIC _IMPORTING)
-  
+
+option(SKIP_GAME_OPT "Skip Game" OFF)
+if(SKIP_GAME_OPT)
+target_compile_definitions(${PROJECT_NAME} PUBLIC SKIP_GAME_OPT)
+endif()
+
+
 target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}Lib)
 target_link_libraries(${PROJECT_NAME}Lib PRIVATE MathLib)
 target_link_libraries(${PROJECT_NAME}TestRunner PRIVATE MathLib)
 target_link_libraries(${PROJECT_NAME}TestRunner PRIVATE ${PROJECT_NAME}Lib)
+
+ 
 
 #includes
 message("CMAKE_CURRENT_SOURCE_DIR:  ${CMAKE_CURRENT_SOURCE_DIR}")
