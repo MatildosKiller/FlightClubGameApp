@@ -61,7 +61,7 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC _IMPORTING)
 
 option(SKIP_GAME_OPT "Skip Game" OFF)
 if(SKIP_GAME_OPT)
-target_compile_definitions(${PROJECT_NAME} PUBLIC SKIP_GAME_OPT)
+target_compile_definitions(${PROJECT_NAME} PUBLIC SKIP_GAME)
 endif()
 
 
