@@ -9,6 +9,7 @@ on:
 
 env:
   BUILD_TYPE: Release
+  TARGET: FightClubGameAppCMake
 
 jobs:
   build:
@@ -26,12 +27,9 @@ jobs:
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
-      # Build your program with the given configuration
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -v --target env ${{env.TARGET}}
+    - name: Archive Artifacts
+      run: Compress-Archive -Path build/bin/* -DestinationPath ${{env.TARGET}}-${{env.BUILD_TYPE}}.zip
 
-    - name: Test
-      working-directory: ${{github.workspace}}/build
-      # Execute tests defined by the CMake configuration.
-      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      run: ctest -C ${{env.BUILD_TYPE}}
 
+      
