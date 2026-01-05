@@ -9,7 +9,7 @@ on:
 
 env:
   BUILD_TYPE: Release
-  TARGET: FightClubGameAppCMake
+  TARGET: FightClubGameApp
 
 jobs:
   build:
