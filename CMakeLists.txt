@@ -92,11 +92,10 @@ message("INCLUDES: ${INCLUDES}")
 
 # if(MSVC)
 
-if(${WIN32})#if(WIN32)
-message("Running on Windows")
-elseif(LINUX)
-message("Running on Linux")
-
+if(WIN32)  # CMake автоматически определяет WIN32 для Windows
+    message("Running on Windows")
+elseif(UNIX)  # UNIX включает Linux/macOS
+    message("Running on Linux")
 endif()
 
 # if(${MSVC_TOOLSET_VERSION} EQUAL 143)
@@ -107,7 +106,7 @@ endif()
 # message("MSVC version: ${MSVC_VERSION}")
 # message("MSVC toolset version: ${MSVC_TOOLSET_VERSION}")
 
-target_compile_options(${PROJECT_NAME} PRIVATE /FAc)
+#target_compile_options(${PROJECT_NAME} PRIVATE /FAc)
 # endif()
 
 
