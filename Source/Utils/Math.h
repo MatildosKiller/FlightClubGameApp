@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#if defined(_WIN32) || defined(_WIN64) || defined(_WINDOWS)
+#if defined(WIN32) || defined(_WINDOWS)
 
 #ifdef _EXPORTING
 #define MATH_API __declspec(dllexport)
