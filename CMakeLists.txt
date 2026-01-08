@@ -82,7 +82,7 @@ set(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}TestRunner ${PROJECT_NAME}Lib)
 
 foreach(target IN LISTS TARGETS)
   target_include_directories(${target} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Source) 
-endforeach(<loop_)
+endforeach()
 
 
 message("SOURCES: ${SOURCES}")
