@@ -16,7 +16,7 @@ Character::~Character() {}
 bool Character::attack(Character& target)
 {
     const bool fired = m_weapon->fire();
-
+ 
     if (fired)
     {
         const int damage = m_weapon->damage();
