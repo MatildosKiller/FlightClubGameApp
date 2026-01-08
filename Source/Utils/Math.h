@@ -1,16 +1,17 @@
 #pragma once
 #include <vector>
 
-#ifdef WIN32 || _WINDOWS
+#if defined(_WIN32) || defined(_WIN64) || defined(_WINDOWS)
 
 #ifdef _EXPORTING
 #define MATH_API __declspec(dllexport)
-#elif _IMPOTING
+#elif _IMPORTING
 #define MATH_API __declspec(dllimport)
 #else
 #define MATH_API
 #endif
 #else
+
 #define MATH_API __attribute__((visibility("default")))
 #endif 
 

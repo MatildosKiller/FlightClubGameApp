@@ -1,16 +1,16 @@
 #pragma once
 
-#ifdef WIN32 || _WINDOWS
+#if defined(_WIN32) || defined(_WIN64) || defined(_WINDOWS)
 
     #ifdef _EXPORTING
         #define GAME_API __declspec(dllexport)
-    #elif _IMPOTING
+    #elif _IMPORTING
         #define GAME_API __declspec(dllimport)
     #else
         #define GAME_API
     #endif
 #else
-    #define GAMEAPI __attribute__((visibility("default")))
+    #define GAME_API __attribute__((visibility("default")))
 #endif 
 class Weapon;
 
