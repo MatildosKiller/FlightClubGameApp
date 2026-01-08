@@ -99,13 +99,13 @@ message("Running on Linux")
 
 endif()
 
-if(${MSVC_TOOLSET_VERSION} EQUAL 143)
-  MESSAGE("!!!!!!!!!!!!!")
-endif()
+# if(${MSVC_TOOLSET_VERSION} EQUAL 143)
+#   MESSAGE("!!!!!!!!!!!!!")
+# endif()
 
-message("using ${CMAKE_CXX_COMPILER_ID} comiler")
-message("MSVC version: ${MSVC_VERSION}")
-message("MSVC toolset version: ${MSVC_TOOLSET_VERSION}")
+# message("using ${CMAKE_CXX_COMPILER_ID} comiler")
+# message("MSVC version: ${MSVC_VERSION}")
+# message("MSVC toolset version: ${MSVC_TOOLSET_VERSION}")
 
 target_compile_options(${PROJECT_NAME} PRIVATE /FAc)
 # endif()
