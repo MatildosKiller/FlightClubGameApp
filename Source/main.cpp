@@ -2,7 +2,7 @@
 #include <thread>
 #include <utility>
 
-#include "Game/character.h"
+#include "Game/Character.h"
 
 int main()
 {
